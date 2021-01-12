@@ -1,0 +1,23 @@
+<h1>EAT-A-BURGER!</h1>
+
+<div id="displayBurger">
+    {{#each burgers}}
+    {{burger_name}}
+    {{/each}}
+</div>
+
+<div>
+    {{#each burgers}}
+    {{/each}}
+</div>
+
+<h2>Enter a burgers</h2>
+<form id="create-form">
+
+    <div class="form-group">
+        <label for="ca">What Burger would you like to order?:</label>
+        <input type="text" name="name" id="burger_input">
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
