@@ -3,22 +3,21 @@ const bodyParser = require("body-parser");
 
 const PORT = process.env.PORT || 8030;
 
-const app = express();
+const exphbs = require('express-handlebars');
+const mysql = require('mysql');
 
-app.use(express.static("public"));
 
-app.use(bodyParser.urlencoded({ extended: true }));
+var app = express();
 
-app.use(bodyParser.json());
+app.use(express.static(process.cwd() + '/public'));
 
-const exphbs = require("express-handlebars");
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
-var routes = require("./controllers/burgers_controller.js");
-
-app.use(routes);
+var router = require('./controllers/burgers_controller');
+app.use('/', router);
 
 app.listen(PORT, function() {
   console.log("Server listening on: http://localhost:" + PORT);
